@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@drawable/bg_gradient"
+    android:padding="24dp"
+    tools:context=".ChooseGameActivity2">
+
+
+    <Button
+        android:id="@+id/btngame1"
+        android:layout_width="280dp"
+        android:layout_height="70dp"
+        android:text="Game 1"
+        android:textSize="20sp"
+        android:backgroundTint="@color/learning_blue"
+        android:textColor="@color/white"
+        android:layout_marginBottom="24dp"
+        android:elevation="8dp"
+        android:stateListAnimator="@null"
+        android:background="@drawable/button_rounded_corners"/>
+
+    <!-- Games Button with elevation and rounded corners -->
+    <Button
+        android:id="@+id/btngame2"
+        android:layout_width="280dp"
+        android:layout_height="70dp"
+        android:text="Game 2"
+        android:textSize="20sp"
+        android:backgroundTint="@color/game_green"
+        android:textColor="@color/white"
+        android:elevation="8dp"
+        android:stateListAnimator="@null"
+        android:background="@drawable/button_rounded_corners"/>
+
+
+</LinearLayout>

@@ -1,0 +1,34 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@drawable/kidsbg">
+
+    <Button
+        android:id="@+id/btnEnglish"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="English"
+        android:layout_margin="20dp"
+        android:backgroundTint="#2196F3"
+        android:textColor="#fff" />
+
+    <Button
+        android:id="@+id/btnHindi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="हिंदी"
+        android:layout_margin="20dp"
+        android:backgroundTint="#4CAF50"
+        android:textColor="#fff" />
+
+    <Button
+        android:id="@+id/btnMarathi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="मराठी"
+        android:layout_margin="20dp"
+        android:backgroundTint="#FF5722"
+        android:textColor="#fff" />
+</LinearLayout>

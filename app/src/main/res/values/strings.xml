@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">miniproject</string>
+    <string name="animal_sounds">Animal Sounds</string>
+    <string name="animal_image_desc">Animal image</string>
+    <string name="fruit_image_desc">Fruit image</string>
+    <string name="fruits">Fruits</string>
+    <string name="language">Language</string>
+</resources>

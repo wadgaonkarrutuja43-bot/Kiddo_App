@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <!-- New colors for Learning/Games buttons -->
+    <color name="learning_blue">#FF4285F4</color>  <!-- Google blue -->
+    <color name="game_green">#FF34A853</color>    <!-- Google green -->
+
+    <!-- Alternative color options -->
+    <color name="learning_blue_alt">#FF1976D2</color>  <!-- Darker blue -->
+    <color name="game_green_alt">#FF0F9D58</color>    <!-- Darker green -->
+    <color name="kids_light_bg">#FFF8E1</color>
+
+</resources>
