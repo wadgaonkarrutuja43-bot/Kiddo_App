@@ -3,7 +3,6 @@ package com.example.miniproject;
 
 import android.content.Context;
 import android.speech.tts.TextToSpeech;
-import android.speech.tts.UtteranceProgressListener;
 import android.util.Log;
 import java.util.Locale;
 
@@ -26,7 +25,7 @@ public class TTSHelper implements TextToSpeech.OnInitListener {
                 Log.e("TTS", "Language not supported");
             } else {
                 isLoaded = true;
-                // Set slower speech rate (0.8f is 80% of normal speed)
+                // Set slower speech rate (0.7f is 70% of normal speed for kids)
                 tts.setSpeechRate(0.7f);
                 // Higher pitch for kid-friendly voice
                 tts.setPitch(1.2f);
@@ -36,12 +35,28 @@ public class TTSHelper implements TextToSpeech.OnInitListener {
         }
     }
 
+    // Standard speak method called by LearningAdapter
+    public void speak(String text) {
+        speakSlowly(text);
+    }
+
+    // Existing speak method
     public void speakSlowly(String text) {
         if (isLoaded) {
             // Clear any previous speech
             tts.stop();
             // Speak with slower rate
             tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, "slow_tts");
+        }
+    }
+
+    // Custom speak method if you ever want to override rate or pitch dynamically
+    public void speak(String text, float rate, float pitch) {
+        if (isLoaded) {
+            tts.stop();
+            tts.setSpeechRate(rate);
+            tts.setPitch(pitch);
+            tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, "custom_tts");
         }
     }
 

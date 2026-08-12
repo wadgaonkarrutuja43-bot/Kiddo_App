@@ -4,42 +4,23 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/white"
-    android:padding="12dp"> <!-- Reduced from 16dp -->
+    android:padding="12dp">
 
     <TextView
         android:id="@+id/titleText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="24sp"
-    android:textColor="@color/black"
-    android:textStyle="bold"
-    android:layout_gravity="center_horizontal"
-    android:layout_marginBottom="20dp"/> <!-- Reduced from 24dp -->
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="20dp"/>
 
-    <HorizontalScrollView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true"
-        android:scrollbars="none"> <!-- Hide scrollbars for cleaner look -->
+        android:clipToPadding="false"
+        android:scrollbars="vertical" />
 
-        <ScrollView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:fillViewport="true"
-            android:scrollbars="none">
-
-            <GridLayout
-                android:id="@+id/gridLayout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:columnCount="2"
-                android:rowCount="5"
-                android:alignmentMode="alignMargins"
-                android:padding="4dp"> <!-- Added small internal padding -->
-
-                <!-- Color buttons will be added programmatically -->
-
-            </GridLayout>
-        </ScrollView>
-    </HorizontalScrollView>
 </LinearLayout>

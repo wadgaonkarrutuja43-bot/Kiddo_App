@@ -12,12 +12,12 @@
     android:padding="24dp"
     tools:context=".ChooseGameActivity2">
 
-
+    <!-- New Game 1: Animal Sounds -->
     <Button
-        android:id="@+id/btngame1"
+        android:id="@+id/btnAnimalSounds"
         android:layout_width="280dp"
         android:layout_height="70dp"
-        android:text="Game 1"
+        android:text="Animal Sounds"
         android:textSize="20sp"
         android:backgroundTint="@color/learning_blue"
         android:textColor="@color/white"
@@ -26,18 +26,70 @@
         android:stateListAnimator="@null"
         android:background="@drawable/button_rounded_corners"/>
 
-    <!-- Games Button with elevation and rounded corners -->
+    <!-- New Game 2: Shape Tap -->
     <Button
-        android:id="@+id/btngame2"
+        android:id="@+id/btnShapeTap"
         android:layout_width="280dp"
         android:layout_height="70dp"
-        android:text="Game 2"
+        android:text="Shape Tap"
+        android:textSize="20sp"
+        android:backgroundTint="@color/game_green"
+        android:textColor="@color/white"
+        android:layout_marginBottom="24dp"
+        android:elevation="8dp"
+        android:stateListAnimator="@null"
+        android:background="@drawable/button_rounded_corners"/>
+
+    <!-- Additional Mini-Games -->
+    <Button
+        android:id="@+id/btnBalloonGame"
+        android:layout_width="280dp"
+        android:layout_height="70dp"
+        android:text="Balloon Pop Game"
+        android:textSize="20sp"
+        android:backgroundTint="@color/learning_blue"
+        android:textColor="@color/white"
+        android:layout_marginBottom="24dp"
+        android:elevation="8dp"
+        android:stateListAnimator="@null"
+        android:background="@drawable/button_rounded_corners"/>
+
+    <Button
+        android:id="@+id/btnColoringGame"
+        android:layout_width="280dp"
+        android:layout_height="70dp"
+        android:text="Coloring Canvas"
+        android:textSize="20sp"
+        android:backgroundTint="@color/game_green"
+        android:textColor="@color/white"
+        android:layout_marginBottom="24dp"
+        android:elevation="8dp"
+        android:stateListAnimator="@null"
+        android:background="@drawable/button_rounded_corners"/>
+
+    <Button
+        android:id="@+id/btnMatchingGame"
+        android:layout_width="280dp"
+        android:layout_height="70dp"
+        android:text="Matching Game"
+        android:textSize="20sp"
+        android:backgroundTint="@color/learning_blue"
+        android:textColor="@color/white"
+        android:layout_marginBottom="24dp"
+        android:elevation="8dp"
+        android:stateListAnimator="@null"
+        android:background="@drawable/button_rounded_corners"/>
+
+    <Button
+        android:id="@+id/btnFlashcards"
+        android:layout_width="280dp"
+        android:layout_height="70dp"
+        android:text="Flashcards"
         android:textSize="20sp"
         android:backgroundTint="@color/game_green"
         android:textColor="@color/white"
         android:elevation="8dp"
         android:stateListAnimator="@null"
         android:background="@drawable/button_rounded_corners"/>
-
 
 </LinearLayout>

@@ -2,14 +2,14 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/kidsbg">
+    android:background="#F5F5F5">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
+    <!-- Swipeable Card ViewPager -->
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPagerFlashcards"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:clipToPadding="false"
-        android:padding="12dp"
-        android:scrollbars="vertical" />
+        android:clipChildren="false"
+        android:clipToPadding="false" />
 
 </RelativeLayout>

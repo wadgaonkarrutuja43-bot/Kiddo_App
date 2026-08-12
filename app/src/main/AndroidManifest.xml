@@ -14,45 +14,70 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Miniproject"
         tools:targetApi="31">
+
+        <!-- Main Launcher Entry Point -->
         <activity
-            android:name=".ChooseGameActivity2"
+            android:name=".Mainpage"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="false" />
+
+        <!-- Selection & Hub Activities -->
+        <activity
+            android:name=".SelectionActivity"
             android:exported="false" />
         <activity
             android:name=".GameActivity2"
             android:exported="false" />
-        <activity android:name=".SelectionActivity" />
         <activity
-            android:name=".color"
-            android:exported="true" />
+            android:name=".ChooseGameActivity2"
+            android:exported="false" />
+
+        <!-- Mini-Games Activities -->
+        <activity android:name=".AnimalSoundsActivity" />
+        <activity android:name=".ShapeTapActivity" />
+        <activity
+            android:name=".BalloonGameActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ColoringGameActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MatchingGameActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FlashcardActivity"
+            android:exported="false" />
+
+        <!-- Educational Category Activities -->
         <activity
             android:name=".A_To_Z"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".NumbersActivity"
-            android:exported="true" />
+            android:exported="false" />
         <activity
-            android:name=".AnimalsActivity"
-            android:exported="true"
-            android:label="@string/animal_sounds"
-            android:parentActivityName=".MainActivity" />
+            android:name=".color"
+            android:exported="false" />
         <activity
             android:name=".FruitsActivity"
-            android:exported="true" />
-        <activity android:name=".NumberSequencingActivity" />
+            android:exported="false" />
         <activity
-            android:name=".Mainpage"
-            android:exported="true">
-
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:name=".NumberSequencingActivity"
+            android:exported="false" />
         <activity
-            android:name=".MainActivity"
-            android:exported="true" />
+            android:name=".AnimalsActivity"
+            android:exported="false"
+            android:label="@string/animal_sounds"
+            android:parentActivityName=".MainActivity" />
+
     </application>
 
 </manifest>

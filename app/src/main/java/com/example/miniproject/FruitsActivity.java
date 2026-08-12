@@ -1,23 +1,33 @@
 package com.example.miniproject;
 
-import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.speech.tts.TextToSpeech; // Add this import
-import android.widget.GridView;
+import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
-import java.util.Locale; // Add this import
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class FruitsActivity extends AppCompatActivity {
 
-    private TTSHelper ttsHelper; // Add this field
-    private final int[] fruitImages = {  R.drawable.apple, R.drawable.mango, R.drawable.chikoo,
+    private TTSHelper ttsHelper;
+    private RecyclerView recyclerView;
+
+    // Paired arrays for fruit images and names
+    private final int[] fruitImages = {
+            R.drawable.apple, R.drawable.mango, R.drawable.chikoo,
             R.drawable.pineapple, R.drawable.cherry, R.drawable.guava,
-            R.drawable.banana,  R.drawable.strawberry,
-            R.drawable.watermelon, R.drawable.papaya, R.drawable.orange, R.drawable.grapes, };
-    private final String[] fruitNames = {  "Apple", "Mango", "Chikoo",
+            R.drawable.banana, R.drawable.strawberry,
+            R.drawable.watermelon, R.drawable.papaya, R.drawable.orange, R.drawable.grapes
+    };
+
+    private final String[] fruitNames = {
+            "Apple", "Mango", "Chikoo",
             "Pineapple", "Cherry", "Guava",
             "Banana", "Strawberry",
-            "Watermelon", "Papaya", "Orange", "Grapes" };
+            "Watermelon", "Papaya", "Orange", "Grapes"
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,21 +37,43 @@ public class FruitsActivity extends AppCompatActivity {
         // Initialize TTS
         ttsHelper = new TTSHelper(this);
 
-        GridView gridView = findViewById(R.id.gridFruits);
-        FruitAdapter adapter = new FruitAdapter(this, fruitImages, fruitNames);
-        gridView.setAdapter(adapter);
+        // Set Title
+        TextView title = findViewById(R.id.titleText);
+        if (title != null) {
+            title.setText("FRUITS");
+        }
 
-        gridView.setOnItemClickListener((parent, view, position, id) -> {
-            // Speak fruit name when clicked
-            if (ttsHelper != null) {
-                ttsHelper.speakSlowly(fruitNames[position]);
-            }
-        });
+        recyclerView = findViewById(R.id.recyclerView);
+
+        // Build list of LearningItems using loop pattern
+        List<LearningItem> fruitList = new ArrayList<>();
+        for (int i = 0; i < fruitNames.length; i++) {
+            String name = fruitNames[i];
+            int imageRes = fruitImages[i];
+            String speechText = "This is " + name.toLowerCase();
+
+            fruitList.add(new LearningItem(name, imageRes, speechText));
+        }
+
+        setupResponsiveGrid(recyclerView, fruitList);
+    }
+
+    private void setupResponsiveGrid(RecyclerView recyclerView, List<LearningItem> items) {
+        float screenWidthDp = getResources().getDisplayMetrics().widthPixels /
+                getResources().getDisplayMetrics().density;
+
+        // Dynamic column calculation (~140dp per item)
+        int spanCount = Math.max(2, (int) (screenWidthDp / 140));
+
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, spanCount);
+        recyclerView.setLayoutManager(gridLayoutManager);
+
+        LearningAdapter adapter = new LearningAdapter(items, ttsHelper);
+        recyclerView.setAdapter(adapter);
     }
 
     @Override
     protected void onDestroy() {
-        // Clean up TTS resources
         if (ttsHelper != null) {
             ttsHelper.shutdown();
         }

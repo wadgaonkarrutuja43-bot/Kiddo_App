@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@drawable/bg_gradient"
+    android:padding="24dp">
+
+    <TextView
+        android:id="@+id/tvTargetShape"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Find the Shape!"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:layout_marginBottom="32dp" />
+
+    <Button
+        android:id="@+id/btnOption1"
+        android:layout_width="280dp"
+        android:layout_height="70dp"
+        android:textSize="22sp"
+        android:textColor="@color/white"
+        android:layout_marginBottom="20dp"
+        android:backgroundTint="@color/game_green"
+        android:background="@drawable/button_rounded_corners" />
+
+    <Button
+        android:id="@+id/btnOption2"
+        android:layout_width="280dp"
+        android:layout_height="70dp"
+        android:textSize="22sp"
+        android:textColor="@color/white"
+        android:layout_marginBottom="20dp"
+        android:backgroundTint="@color/learning_blue"
+        android:background="@drawable/button_rounded_corners" />
+
+    <Button
+        android:id="@+id/btnOption3"
+        android:layout_width="280dp"
+        android:layout_height="70dp"
+        android:textSize="22sp"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/game_green"
+        android:background="@drawable/button_rounded_corners" />
+
+</LinearLayout>

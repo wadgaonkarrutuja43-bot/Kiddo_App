@@ -1,24 +1,32 @@
 package com.example.miniproject;
 
-import android.app.Activity;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.util.TypedValue;
-import android.view.View;
-import android.widget.Button;
-import android.widget.GridLayout;
 import android.widget.TextView;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-public class color extends Activity implements View.OnClickListener {
-    private final String[] colorNames = {"BLUE", "RED", "YELLOW", "ORANGE",
-            "GREEN", "PURPLE", "PINK", "BLACK", "WHITE"};
-    private final int[] colorValues = {Color.BLUE, Color.RED, Color.YELLOW,
-            Color.parseColor("#FFA500"), // ORANGE
-            Color.GREEN, Color.parseColor("#800080"), // PURPLE
-            Color.parseColor("#FFC0CB"), // PINK
-            Color.BLACK, Color.WHITE};
+import java.util.ArrayList;
+import java.util.List;
+
+public class color extends AppCompatActivity {
 
     private TTSHelper ttsHelper;
+    private RecyclerView recyclerView;
+
+    // Define colors along with their corresponding hex values
+    private final String[][] colorData = {
+            {"BLUE", "#0000FF"},
+            {"RED", "#FF0000"},
+            {"YELLOW", "#FFEB3B"},
+            {"ORANGE", "#FF9800"},
+            {"GREEN", "#4CAF50"},
+            {"PURPLE", "#9C27B0"},
+            {"PINK", "#E91E63"},
+            {"BLACK", "#000000"},
+            {"WHITE", "#FFFFFF"},
+            {"BROWN", "#795548"}
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,58 +36,39 @@ public class color extends Activity implements View.OnClickListener {
         // Initialize TTS
         ttsHelper = new TTSHelper(this);
 
-        // Set title
+        // Set Title
         TextView title = findViewById(R.id.titleText);
-        title.setText("COLOURS");
-
-        GridLayout gridLayout = findViewById(R.id.gridLayout);
-        gridLayout.setColumnCount(2); // 2 colors per row
-
-        // Calculate button size based on screen width
-        int screenWidth = getResources().getDisplayMetrics().widthPixels;
-        int buttonSize = (screenWidth - 60) / 2; // Account for margins (20+20+20)
-
-        for (int i = 0; i < colorNames.length; i++) {
-            Button button = createRoundColorButton(colorNames[i], colorValues[i], buttonSize);
-            gridLayout.addView(button);
+        if (title != null) {
+            title.setText("COLOURS");
         }
-    }
 
-    private Button createRoundColorButton(String colorName, int colorValue, int size) {
-        Button button = new Button(this);
-        button.setText(colorName);
-        button.setBackground(getResources().getDrawable(R.drawable.round_color_button));
-        button.getBackground().setTint(colorValue);
-        button.setOnClickListener(this);
+        recyclerView = findViewById(R.id.recyclerView);
 
-        // Set text color based on background brightness
-        button.setTextColor(isDarkColor(colorValue) ? Color.WHITE : Color.BLACK);
+        // Build list of LearningItems using hex codes for LearningAdapter circle rendering
+        List<LearningItem> colorList = new ArrayList<>();
+        for (String[] colorInfo : colorData) {
+            String name = colorInfo[0];
+            String hex = colorInfo[1];
 
-        GridLayout.LayoutParams params = new GridLayout.LayoutParams();
-        params.width = size;
-        params.height = size;
-        params.setMargins(20, 20, 20, 20);
-
-        button.setLayoutParams(params);
-        button.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
-        button.setAllCaps(true);
-
-        return button;
-    }
-
-    private boolean isDarkColor(int color) {
-        double darkness = 1 - (0.299 * Color.red(color) +
-                0.587 * Color.green(color) +
-                0.114 * Color.blue(color)) / 255;
-        return darkness >= 0.5;
-    }
-
-    @Override
-    public void onClick(View v) {
-        if (v instanceof Button) {
-            String colorName = ((Button) v).getText().toString();
-            ttsHelper.speakSlowly(colorName);
+            // Pass Hex code as 3rd parameter so LearningAdapter detects '#' and tints circle_shape
+            colorList.add(new LearningItem(name, 0, hex));
         }
+
+        setupResponsiveGrid(recyclerView, colorList);
+    }
+
+    private void setupResponsiveGrid(RecyclerView recyclerView, List<LearningItem> items) {
+        float screenWidthDp = getResources().getDisplayMetrics().widthPixels /
+                getResources().getDisplayMetrics().density;
+
+        // Calculates column count dynamically for phones and tablets
+        int spanCount = Math.max(2, (int) (screenWidthDp / 140));
+
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, spanCount);
+        recyclerView.setLayoutManager(gridLayoutManager);
+
+        LearningAdapter adapter = new LearningAdapter(items, ttsHelper);
+        recyclerView.setAdapter(adapter);
     }
 
     @Override

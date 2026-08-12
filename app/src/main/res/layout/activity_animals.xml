@@ -14,14 +14,13 @@
         android:textColor="#BF360C"
         android:textStyle="bold"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="24dp"/>
+        android:layout_marginBottom="16dp"/>
 
-    <GridView
-        android:id="@+id/gridAnimals"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:numColumns="2"
-        android:verticalSpacing="16dp"
-        android:horizontalSpacing="16dp"
-        android:stretchMode="columnWidth"/>
+        android:clipToPadding="false"
+        android:scrollbars="vertical" />
+
 </LinearLayout>

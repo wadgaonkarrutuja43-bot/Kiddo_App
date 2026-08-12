@@ -2,18 +2,13 @@ package com.example.miniproject;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 public class ChooseGameActivity2 extends AppCompatActivity {
 
-    Button B1game,B2game;
+    private TTSHelper ttsHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,31 +16,62 @@ public class ChooseGameActivity2 extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_choose_game2);
 
+        ttsHelper = new TTSHelper(this);
 
-        B1game = findViewById(R.id.btngame1);
-        B2game = findViewById(R.id.btngame2);
-
-        B1game.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ChooseGameActivity2.this, GameActivity2.class);
-                intent.putExtra("selected_mode", "learning");
-                startActivity(intent);
-                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-                finish();
-            }
+        // 1. Animal Sounds Game
+        findViewById(R.id.btnAnimalSounds).setOnClickListener(v -> {
+            ttsHelper.speak("Animal Sounds");
+            Intent intent = new Intent(ChooseGameActivity2.this, AnimalSoundsActivity.class);
+            startActivity(intent);
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         });
 
-        B2game.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ChooseGameActivity2.this, NumberSequencingActivity.class);
-                intent.putExtra("selected_mode", "learning");
-                startActivity(intent);
-                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-                finish();
-            }
+        // 2. Shape Tap Game
+        findViewById(R.id.btnShapeTap).setOnClickListener(v -> {
+            ttsHelper.speak("Shape Tap");
+            Intent intent = new Intent(ChooseGameActivity2.this, ShapeTapActivity.class);
+            startActivity(intent);
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         });
 
+        // 3. Balloon Pop Game
+        findViewById(R.id.btnBalloonGame).setOnClickListener(v -> {
+            ttsHelper.speak("Balloon Pop Game");
+            Intent intent = new Intent(ChooseGameActivity2.this, BalloonGameActivity.class);
+            startActivity(intent);
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+        });
+
+        // 4. Coloring Canvas
+        findViewById(R.id.btnColoringGame).setOnClickListener(v -> {
+            ttsHelper.speak("Coloring Canvas");
+            Intent intent = new Intent(ChooseGameActivity2.this, ColoringGameActivity.class);
+            startActivity(intent);
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+        });
+
+        // 5. Drag & Drop Matching Game
+        findViewById(R.id.btnMatchingGame).setOnClickListener(v -> {
+            ttsHelper.speak("Matching Game");
+            Intent intent = new Intent(ChooseGameActivity2.this, MatchingGameActivity.class);
+            startActivity(intent);
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+        });
+
+        // 6. Flashcards
+        findViewById(R.id.btnFlashcards).setOnClickListener(v -> {
+            ttsHelper.speak("Flashcards");
+            Intent intent = new Intent(ChooseGameActivity2.this, FlashcardActivity.class);
+            startActivity(intent);
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+        });
+    }
+
+    @Override
+    protected void onDestroy() {
+        if (ttsHelper != null) {
+            ttsHelper.shutdown();
+        }
+        super.onDestroy();
     }
 }
